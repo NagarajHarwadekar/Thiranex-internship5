@@ -1,0 +1,6 @@
+{
+  "name": "FINOVA",
+  "description": "FINOVA — Smarter Money. Better Choices. A premier modern financial marketplace, interactive money tools, and comprehensive financial learning platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

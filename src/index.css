@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    background-color: #fafafa;
+    color: #111827;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Subtle glassmorphism and fine surface borders */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.subtle-border {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.subtle-border-hover:hover {
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+/* Liquid Metal / Surface Light Sheen */
+.liquid-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-sheen::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 220%;
+  height: 200%;
+  background: linear-gradient(
+    65deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.12) 38%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.12) 62%,
+    transparent 80%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.liquid-sheen:hover::after {
+  transform: translateX(120%);
+}
+
+/* Liquid Metal Card with dynamic subtle specular reflection */
+.liquid-metal-card {
+  position: relative;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+  background: #ffffff;
+}
+
+.liquid-metal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -10px rgba(15, 23, 42, 0.09), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+/* Tactile button press feedback */
+.tactile-btn {
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s ease, background-color 0.16s ease;
+}
+
+.tactile-btn:hover {
+  transform: translateY(-1px);
+}
+
+.tactile-btn:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+/* 3D Perspective Card Tilt */
+.perspective-container {
+  perspective: 1000px;
+}
+
+.perspective-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.perspective-card:hover {
+  transform: translateY(-4px) rotateX(1.5deg) rotateY(-1deg);
+  box-shadow: 0 20px 35px -12px rgba(15, 23, 42, 0.12);
+}
+
+/* Page Entry Animations */
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Smooth motion & accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .liquid-sheen::after {
+    display: none !important;
+  }
+  .perspective-card:hover {
+    transform: none !important;
+  }
+}
